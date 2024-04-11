@@ -49,6 +49,7 @@ class RedactingFormatter(logging.Formatter):
             self.SEPARATOR)
         return redacted
 
+
 def get_logger() -> logging.Logger:
     """
     function that takes no arguments
