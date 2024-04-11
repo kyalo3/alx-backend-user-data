@@ -48,3 +48,20 @@ class RedactingFormatter(logging.Formatter):
             message,
             self.SEPARATOR)
         return redacted
+
+def get_logger() -> logging.Logger:
+    """
+    function that takes no arguments
+    """
+    logger = logging.getLogger("user_data")
+    logger.setLevel(logging.INFO)
+    logger.propagate = False
+
+    stream_handler = logging.StreamHandler()
+    stream_handler.setLevel(logging.INFO)
+
+    formatter = RedactingFormatter(list(PII_FIELDS))
+
+    stream_handler.setFormatter(formatter)
+    logger.addHandler(stream_handler)
+    return logger
