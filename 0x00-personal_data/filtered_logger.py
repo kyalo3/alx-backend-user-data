@@ -4,16 +4,19 @@ Regex-ing
 """
 
 import re
+from typing import List
+import logging
+import mysql.connector
+import os
 
 
-def filter_datum(fields, redaction, message, separator):
+def filter_datum(
+        fields: Liist[str],
+        redaction: str, message: str, separator: str) -> str:
     """
     function should use a regex to replace
     occurrences of certain field values
     """
-    return re.sub(
-        '|'.join(
-            f'(?<={re.escape(separator)}{field}=)[^{re.escape(separator)}]*' for field in fields),
-        redaction,
-        message
-    )
+    message = re.sub(field + '=.*?' + separator,
+                     field + '=' + redaction + separator, message)
+    return message
