@@ -17,6 +17,7 @@ def filter_datum(
     function should use a regex to replace
     occurrences of certain field values
     """
-    message = re.sub(field + '=.*?' + separator,
-                     field + '=' + redaction + separator, message)
+    for field in fields:
+        message = re.sub(field + '=.*?' + separator,
+                         field + '=' + redaction + separator, message)
     return message
