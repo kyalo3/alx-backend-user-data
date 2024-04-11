@@ -11,7 +11,7 @@ import os
 
 
 def filter_datum(
-        fields: Liist[str],
+        fields: List[str],
         redaction: str, message: str, separator: str) -> str:
     """
     function should use a regex to replace
