@@ -12,18 +12,19 @@ import os
 app = Flask(__name__)
 app.register_blueprint(app_views)
 CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
+auth = None
 
 
 @app.errorhandler(404)
-def not_found(error):
+def not_found(error) -> str:
     """ Not found handler
     """
     return jsonify({"error": "Not found"}), 404
 
 
 @app.errorhandler(401)
-def not_found(error):
-    """ Not found handler
+def not_found(error) -> str:
+    """ Not authorized handler
     """
     return jsonify({
         "error": "Unauthorized"
@@ -32,7 +33,7 @@ def not_found(error):
 
 @app.errorhandler(403)
 def not_found(error):
-    """new error handler
+    """new allowed handler
     """
     return jsonify({
         "error": "Forbidden"
