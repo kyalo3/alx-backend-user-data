@@ -3,6 +3,7 @@
 """
 from flask import jsonify, abort
 from api.v1.views import app_views
+import TypeVar
 
 
 @app_views.route('/status', methods=['GET'], strict_slashes=False)
@@ -26,8 +27,8 @@ def stats() -> str:
     return jsonify(stats)
 
 
-@app_views.route('/unauthorized', methods=['GET'])
-def unauthorized():
+@app_views.route('/unauthorized', methods=['GET'], strict_slashes=False)
+def not_authorized() -> str:
     """ GET /api/v1/unauthorized
     Return:
       - an error
@@ -35,8 +36,8 @@ def unauthorized():
     abort(401)
 
 
-@app_views.route('/forbidden', methods=['GET'])
-def forbidden():
+@app_views.route('/forbidden', methods=['GET'], strict_slashes=False)
+def not_allowed(error) -> str:
     """ GET /api/v1/forbidden
     """
     abort(403)
