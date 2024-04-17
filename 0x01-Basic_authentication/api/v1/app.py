@@ -21,8 +21,8 @@ def not_found(error):
     return jsonify({"error": "Not found"}), 404
 
 
-@app.errorhandler(401):
-def not_found(error)
+@app.errorhandler(401)
+def not_found(error):
     """ Not found handler
     """
     return jsonify({
