@@ -32,4 +32,4 @@ def unauthorized() -> str:
     Return:
       - an error
     """
-    return abort(401)
+    abort(401)
