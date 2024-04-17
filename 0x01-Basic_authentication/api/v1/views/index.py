@@ -3,7 +3,6 @@
 """
 from flask import jsonify, abort
 from api.v1.views import app_views
-import TypeVar
 
 
 @app_views.route('/status', methods=['GET'], strict_slashes=False)
