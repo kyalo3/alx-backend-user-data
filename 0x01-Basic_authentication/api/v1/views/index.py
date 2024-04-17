@@ -36,7 +36,7 @@ def not_authorized() -> str:
 
 
 @app_views.route('/forbidden', methods=['GET'], strict_slashes=False)
-def not_allowed(error) -> str:
+def not_allowed() -> str:
     """ GET /api/v1/forbidden
     """
     abort(403)
