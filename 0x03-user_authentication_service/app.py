@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Route module for the API
+create a simple flask app
 """
 from flask import Flask, jsonify
 
