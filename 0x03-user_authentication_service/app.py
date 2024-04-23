@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 
 @app.route('/GET')
-def create_app() -> str:
+def create_app():
     """returns a JSON payload form
     """
     return jsonify({"message": "Bienvenue"})
