@@ -4,10 +4,8 @@
 """
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.orm.session import Session
-from user import Base
-from user import User
+from sqlalchemy.orm import sessionmaker, Session
+from user import Base, User
 
 
 class DB:
@@ -31,7 +29,7 @@ class DB:
             self.__session = DBSession()
         return self.__session
 
-    def add_user(self, email, hashed_password) -> Session:
+    def add_user(self, email, hashed_password):
         """ The method should save the user to the database
         """
         user = User(email=email, hashed_password=hashed_password)
