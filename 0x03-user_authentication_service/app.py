@@ -3,6 +3,7 @@
 Route module for the API
 """
 from flask import Flask
+from flask import request
 
 app = Flask(__name__)
 
