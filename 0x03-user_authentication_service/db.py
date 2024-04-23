@@ -42,5 +42,4 @@ class DB:
     def find_user_by(self, user_id):
         """
         """
-        id = 
         return None
