@@ -27,6 +27,8 @@ class DB:
         if self.__session is None:
             DBSession = sessionmaker(bind=self._engine)
             self.__session = DBSession()
+
+        """returns a session object"""
         return self.__session
 
     def add_user(self, email, hashed_password):
@@ -35,4 +37,6 @@ class DB:
         user = User(email=email, hashed_password=hashed_password)
         self._session.add(user)
         self._session.commit()
+
+        """returns a User object"""
         return user
