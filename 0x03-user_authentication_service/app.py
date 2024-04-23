@@ -2,8 +2,7 @@
 """
 Route module for the API
 """
-from flask import Flask
-from flask import request
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
