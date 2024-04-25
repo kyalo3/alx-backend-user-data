@@ -2,11 +2,12 @@
 """
 create a simple flask app
 """
-from flask import Flask, jsonify, request, abort
+from flask import Flask, jsonify, request, abort, redirect
 from sqlalchemy.orm.exc import NoResultFound
 from auth import Auth
 
 app = Flask(__name__)
+
 AUTH = Auth()
 
 
@@ -20,20 +21,20 @@ def create_app() -> str:
     return jsonify({"message": "Bienvenue"})
 
 
-@app.route('/', methods=['POST'], strict_slashes=False)
-def status():
+@app.route('/users', methods=['POST'], strict_slashes=False)
+def status() -> str:
     """
     Return:
         - json payload
     """
-    if user:
-        return jsonify({
-            "email": "<registered email>",
-            "message": "user created"
-        })
-
-    else:
-        return jsonify({"message": "email already registered"}), 400
+    try:
+        email = request.form.get("email")
+        password = request.form.get("password")
+        user = AUTH.register_user(email, password)
+        if user:
+            return jsonify({"email": f"{email}", "message": "user created"})
+    except ValueError:
+        return jsonify({"message": "email already registered"})
 
 
 if __name__ == "__main__":
