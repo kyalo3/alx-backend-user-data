@@ -41,16 +41,3 @@ class DB:
 
         """returns a User object"""
         return user
-
-    def find_user_by(self, **kwargs):
-        """ Return the first row found in the users table
-        """
-        if not kwargs:
-            InvalidRequestError
-        if not all():
-        try:
-            return self._session.query(User).filter_by(**kwargs).first()
-        except NoResultFound:
-            raise
-        except InvalidRequestError:
-            raise
