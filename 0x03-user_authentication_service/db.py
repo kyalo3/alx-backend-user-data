@@ -32,7 +32,7 @@ class DB:
         """returns a session object"""
         return self.__session
 
-    def add_user(self, email, hashed_password):
+    def add_user(self, email: str, hashed_password: str) -> User:
         """ The method should save the user to the database
         """
         user = User(email=email, hashed_password=hashed_password)
@@ -45,6 +45,9 @@ class DB:
     def find_user_by(self, **kwargs):
         """ Return the first row found in the users table
         """
+        if not kwargs:
+            InvalidRequestError
+        if not all()
         try:
             return self._session.query(User).filter_by(**kwargs).first()
         except NoResultFound:
