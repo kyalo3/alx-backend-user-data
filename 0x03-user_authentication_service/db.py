@@ -62,9 +62,13 @@ class DB:
         The method should update the corresponding user with the
         attributes.
         """
-        user = self.find_user_by(id=user_id)
-        for key, value in kwargs.items():
-            if key not in User.__table__.columns.keys():
-                raise ValueError
-            setattr(user, key, value)
-        self._session.commit()
+        try:
+            user = self.find_user_by(id=user_id)
+            for key, value in kwargs.items():
+                if hasattr(user, key):
+                    setattr(user, key, value)
+                else:
+                    raise ValueError("Such attributes do not exist")
+            self._session.commit()
+        except NoResultFound:
+            raise NoResultFound("results not found")
