@@ -47,7 +47,7 @@ class DB:
         """
         if not kwargs:
             InvalidRequestError
-        if not all()
+        if not all():
         try:
             return self._session.query(User).filter_by(**kwargs).first()
         except NoResultFound:
