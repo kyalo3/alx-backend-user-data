@@ -2,15 +2,18 @@
 """
 create a simple flask app
 """
-from flask import Flask, jsonify, request. abort
-from auth import Auth
+from flask import Flask, jsonify, request, abort
+from sqlalchemy.orm.exc import NoResultFound
 
 app = Flask(__name__)
-Auth = Auth()
 
-@app.route('/', methods=[GET], strict_slashes=False)
+
+@app.route('/', methods=['GET'], strict_slashes=False)
 def create_app() -> str:
-    """returns a JSON payload form
+    """
+    Returns:
+      - JSON payload
+
     """
     return jsonify({"message": "Bienvenue"})
 
