@@ -41,7 +41,7 @@ class DB:
         return user
 
     def find_user_by(self, **kwargs) -> User:
-        """Implement the find_user_by method, which has one required
+        """return user by filter value
         """
         try:
             user = self._session.query(User).filter_by(**kwargs).first()
