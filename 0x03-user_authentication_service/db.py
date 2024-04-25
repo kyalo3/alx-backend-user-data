@@ -53,7 +53,6 @@ class DB:
         except InvalidRequestError:
             raise InvalidRequestError("not a valid request")
 
-
     def update_user(self, user_id: int, **kwargs) -> None:
         """Implement the update_user method, which has two required argument
         """
