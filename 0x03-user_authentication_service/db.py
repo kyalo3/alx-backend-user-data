@@ -42,25 +42,20 @@ class DB:
 
     def find_user_by(self, **kwargs) -> User:
         """Implement the find_user_by method, which has one required
-        argument: kwargs, a dictionary.
-        The method should return the first
-        row found in the users table as filtered by the methods
-        input arguments.
         """
-        if not kwargs:
-            raise InvalidRequestError
-        if not all(key in User.__table__.columns.keys() for key in kwargs):
-            raise InvalidRequestError
-        row = self._session.query(User).filter_by(**kwargs).first()
-        if not row:
-            raise NoResultFound
-        return row
+        try:
+            user = self._session.query(User).filter_by(**kwargs).first()
+            if user is None:
+                raise NoResultFound
+            return user
+        except NoResultFound:
+            raise NoResultFound("No results found")
+        except InvalidRequestError:
+            raise InvalidRequestError("not a valid request")
+
 
     def update_user(self, user_id: int, **kwargs) -> None:
-        """Implement the update_user method, which has two required arguments:
-        user_id and kwargs, a dictionary.
-        The method should update the corresponding user with the
-        attributes.
+        """Implement the update_user method, which has two required argument
         """
         try:
             user = self.find_user_by(id=user_id)
