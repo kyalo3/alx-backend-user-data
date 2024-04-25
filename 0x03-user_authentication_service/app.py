@@ -2,13 +2,14 @@
 """
 create a simple flask app
 """
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request. abort
+from auth import Auth
 
 app = Flask(__name__)
+Auth = Auth()
 
-
-@app.route('/GET')
-def create_app():
+@app.route('/', methods=[GET], strict_slashes=False)
+def create_app() -> str:
     """returns a JSON payload form
     """
     return jsonify({"message": "Bienvenue"})

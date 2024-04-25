@@ -5,6 +5,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
+from sqlalchemy.exc import NoResultFound, InvalidRequestError
 from user import Base, User
 
 
@@ -40,3 +41,13 @@ class DB:
 
         """returns a User object"""
         return user
+
+    def find_user_by(self, **kwargs):
+        """ Return the first row found in the users table
+        """
+        try:
+            return self._session.query(User).filter_by(**kwargs).first()
+        except NoResultFound:
+            raise
+        except InvalidRequestError:
+            raise
